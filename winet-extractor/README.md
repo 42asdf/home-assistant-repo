@@ -112,6 +112,29 @@ Then run `./docker-compose-up.sh`. This is equivelant to `docker compose up` exc
 
 Once everything is running smoothly you can run it in detatched mode with `./docker-compose-up.sh -d`
 
+### Integrating into existing docker-compose
+
+Build the container using:
+```
+docker build --build-arg BUILD_FROM="homeassistant/amd64-base:latest" -t winet-extractor
+```
+
+Add to your `docker-compose.yml` something like:
+```
+  winet-extractor:
+    container_name: winet
+    image: winet-extractor
+    restart: unless-stopped
+    environment:
+      WINET_HOST: my.winet.host
+      MQTT_URL: 'mqtt://my.mqtt.host:1883'
+      WINET_USER: admin
+      WINET_PASS: 'mypassword'
+      POLL_INTERVAL: 10
+      ANALYTICS: true
+```
+
+
 ## Related Projects
 
 - [GoSungrow](https://github.com/MickMake/GoSungrow)
