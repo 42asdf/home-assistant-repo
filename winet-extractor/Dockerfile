@@ -29,4 +29,4 @@ RUN npm run compile
 RUN chmod a+x /usr/src/app/run.sh
 
 # Start the app
-ENTRYPOINT [ "/usr/src/app/run.sh" ]
+ENTRYPOINT "/usr/src/app/run.sh"
